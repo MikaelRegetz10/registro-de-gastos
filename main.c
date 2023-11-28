@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Dados
+//modifiquei o nome do struct e coloquei um apelido para interagir melhor com o codigo
+//nome da variavel mudado de motivo para nome
+typedef struct Gasto
 {
-    char motivo[50];
+    char nome[50];
     char data[11];
     float valor;
-};
+}Gasto;
 
-void inserir_gasto(struct Dados *dados, int *num_gastos) {
+// 
+void inserir_gasto(Gasto *dados, float *num_gastos) {
     printf("Nome do gasto: ");
     scanf("%s", dados[*num_gastos].motivo);
     printf("Valor do gasto: ");
@@ -19,6 +22,21 @@ void inserir_gasto(struct Dados *dados, int *num_gastos) {
 
     (*num_gastos)++;
     printf("Gasto inserido com sucesso!\n");
+}
+
+void salvar_em_arquivo(Gasto *gastos, int numGastos, const char *nomeArquivo) {
+    FILE *arquivo = fopen(nomeArquivo, "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+        return;
+    }
+
+    for (int i = 0; i < numGastos; i++) {
+        fprintf(arquivo, "%s %.2f %s\n", gastos[i].nome, gastos[i].valor, gastos[i].data);
+    }
+
+    fclose(arquivo);
+    printf("Lista de gastos salva em arquivo.\n");
 }
 
 void imprimir_interface()
@@ -41,8 +59,8 @@ int main()
 {    
     char choice;
     float num_gasto = 0;
-    struct Dados dados[100];
-
+    Gasto dados[100];
+    const char nomeArquivo[15];
     do
     {
         imprimir_interface();
@@ -64,6 +82,10 @@ int main()
             break;
         case '5':
         
+            break;
+        case '6':
+            printf("Escolha o nome do arquivo onde o gasto sera guardado. ");
+            salvar_em_arquivo(dados,num_gasto,nomeAruivo);
             break;
         case '0':
             printf("Saindo...\n");     
