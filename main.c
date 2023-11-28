@@ -1,12 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct dados
+struct Dados
 {
-    char motivo;
-    char data;
-    float quantidade;
+    char motivo[50];
+    char data[11];
+    float valor;
 };
 
+void inserir_gasto(struct Dados *dados, int *num_gastos) {
+    printf("Nome do gasto: ");
+    scanf("%s", dados[*num_gastos].motivo);
+    printf("Valor do gasto: ");
+    scanf("%f", &dados[*num_gastos].valor);
+    printf("Data do gasto (DD/MM/AAAA): ");
+    scanf("%s", dados[*num_gastos].data);
+
+    (*num_gastos)++;
+    printf("Gasto inserido com sucesso!\n");
+}
 
 void imprimir_interface()
 {
@@ -18,7 +31,8 @@ void imprimir_interface()
     printf("| 3- Editar gasto                   |\n");
     printf("| 4- Remover gasto                  |\n");
     printf("| 5- Mostrar soma/ media dos gastos |\n");
-    printf("| 6- Sair                           |\n"); 
+    printf("| 6- Salvar em arquivo              |\n"); 
+    printf("| 0- Sair                           |\n"); 
     printf("=====================================\n");
     printf("Escolha: ");
 }
@@ -26,6 +40,8 @@ void imprimir_interface()
 int main()
 {    
     char choice;
+    float num_gasto = 0;
+    struct Dados dados[100];
 
     do
     {
@@ -35,7 +51,7 @@ int main()
         switch (choice)
         {
         case '1':
-        
+            inserir_gasto(dados, &num_gasto);
             break;
         case '2':
         
@@ -49,7 +65,7 @@ int main()
         case '5':
         
             break;
-        case '6':
+        case '0':
             printf("Saindo...\n");     
             break;        
         
@@ -57,7 +73,7 @@ int main()
             printf("Opcao invalida. Escolha novamente.\n");
         }
 
-    } while ( choice != '6');
+    } while ( choice != '0');
     
     return 0;
 }
