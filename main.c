@@ -9,7 +9,8 @@ struct Dados
     float valor;
 };
 
-void inserir_gasto(struct Dados *dados, int *num_gastos) {
+void inserir_gasto(struct Dados *dados, int *num_gastos) 
+{
     printf("Nome do gasto: ");
     scanf("%s", dados[*num_gastos].motivo);
     printf("Valor do gasto: ");
@@ -81,7 +82,7 @@ void imprimir_interface()
 int main()
 {    
     char choice;
-    float num_gasto = 0;
+    int num_gasto = 0;
     struct Dados dados[100];
 
     do
@@ -95,7 +96,7 @@ int main()
             inserir_gasto(dados, &num_gasto);
             break;
         case '2':
-            listar_ou_buscar_gastos(dados, num_gasto);
+    listar_ou_buscar_gastos(dados, num_gasto);
             break;
         case '3':
         
@@ -105,6 +106,9 @@ int main()
             break;
         case '5':
         
+            break;
+        case '6':
+
             break;
         case '0':
             printf("Saindo...\n");     
