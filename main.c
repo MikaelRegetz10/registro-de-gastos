@@ -11,8 +11,33 @@ typedef struct Gasto
     float valor;
 }Gasto;
 
+<<<<<<< HEAD
 // 
 void inserir_gasto(Gasto *dados, float *num_gastos) {
+=======
+void remover_gasto(struct Dados *dados, int *num_gastos) {
+    char nomeRemocao[50];
+    printf("Digite o nome do gasto a ser removido: ");
+    scanf("%s", nomeRemocao);
+
+    for (int i = 0; i < *num_gastos; i++) {
+        if (strcmp(dados[i].motivo, nomeRemocao) == 0) {
+            // Move os elementos à frente para preencher o espaço vago
+            for (int j = i; j < *num_gastos - 1; j++) {
+                dados[j] = dados[j + 1];
+            }
+            (*num_gastos)--;
+            printf("Gasto removido com sucesso!\n");
+            return;
+        }
+    }
+
+    printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
+}
+
+void inserir_gasto(struct Dados *dados, int *num_gastos) 
+{
+>>>>>>> 541b678749fc0050baba0f93e7921d1b914d8b54
     printf("Nome do gasto: ");
     scanf("%s", dados[*num_gastos].motivo);
     printf("Valor do gasto: ");
@@ -24,6 +49,7 @@ void inserir_gasto(Gasto *dados, float *num_gastos) {
     printf("Gasto inserido com sucesso!\n");
 }
 
+<<<<<<< HEAD
 void salvar_em_arquivo(Gasto *gastos, int numGastos, const char *nomeArquivo) {
     FILE *arquivo = fopen(nomeArquivo, "w");
     if (arquivo == NULL) {
@@ -39,6 +65,49 @@ void salvar_em_arquivo(Gasto *gastos, int numGastos, const char *nomeArquivo) {
     printf("Lista de gastos salva em arquivo.\n");
 }
 
+=======
+void listar_ou_buscar_gastos(struct Dados *dados, int num_gastos) {
+    while (1)
+    {
+        int digito;
+
+
+        printf("O que voce quer fazer:\n1. Listar gastos;\n2. Buscar Gastos.\n");
+        scanf("%d", &digito);
+
+        if (digito == 1) {
+        if (num_gastos == 0) {
+            printf("Nenhum gasto registrado.\n");
+        } else {
+            for (int i = 0; i < num_gastos; i++) {
+                //Formatar saída 
+                printf("%d. Nome: %s - Valor: R$ %.2f - Data: %s\n", i + 1, dados[i].motivo, dados[i].valor, dados[i].data);
+            }
+        }
+                break;
+    } 
+        else if (digito == 2) {
+        char nomeBusca[50];
+        printf("Digite o nome do gasto a ser buscado: ");
+        scanf("%s", nomeBusca);
+
+        for (int i = 0; i < num_gastos; i++) {
+            if (strcmp(dados[i].motivo, nomeBusca) == 0) {
+            //Formatar saída 
+                printf("Nome: %s - Valor: R$ %.2f - Data: %s\n", dados[i].motivo, dados[i].valor, dados[i].data);
+                return;
+            }
+        }
+        printf("Gasto com nome '%s' não encontrado.\n", nomeBusca);
+            break;
+    }
+        else {
+            printf("Opcao nao identificada.\n");
+        }
+    }
+ }
+ 
+>>>>>>> 541b678749fc0050baba0f93e7921d1b914d8b54
 void imprimir_interface()
 {
     printf("=====================================\n");
@@ -58,9 +127,15 @@ void imprimir_interface()
 int main()
 {    
     char choice;
+<<<<<<< HEAD
     float num_gasto = 0;
     Gasto dados[100];
     const char nomeArquivo[15];
+=======
+    int num_gasto = 0;
+    struct Dados dados[100];
+
+>>>>>>> 541b678749fc0050baba0f93e7921d1b914d8b54
     do
     {
         imprimir_interface();
@@ -72,20 +147,24 @@ int main()
             inserir_gasto(dados, &num_gasto);
             break;
         case '2':
-        
+            listar_ou_buscar_gastos(dados, num_gasto);
             break;
         case '3':
         
             break;
         case '4':
-        
+            remover_gasto(dados, &num_gasto);
             break;
         case '5':
         
             break;
         case '6':
+<<<<<<< HEAD
             printf("Escolha o nome do arquivo onde o gasto sera guardado. ");
             salvar_em_arquivo(dados,num_gasto,nomeAruivo);
+=======
+
+>>>>>>> 541b678749fc0050baba0f93e7921d1b914d8b54
             break;
         case '0':
             printf("Saindo...\n");     
