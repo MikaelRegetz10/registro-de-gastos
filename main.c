@@ -9,6 +9,26 @@ struct Dados
     float valor;
 };
 
+void remover_gasto(struct Dados *dados, int *num_gastos) {
+    char nomeRemocao[50];
+    printf("Digite o nome do gasto a ser removido: ");
+    scanf("%s", nomeRemocao);
+
+    for (int i = 0; i < *num_gastos; i++) {
+        if (strcmp(dados[i].motivo, nomeRemocao) == 0) {
+            // Move os elementos à frente para preencher o espaço vago
+            for (int j = i; j < *num_gastos - 1; j++) {
+                dados[j] = dados[j + 1];
+            }
+            (*num_gastos)--;
+            printf("Gasto removido com sucesso!\n");
+            return;
+        }
+    }
+
+    printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
+}
+
 void inserir_gasto(struct Dados *dados, int *num_gastos) 
 {
     printf("Nome do gasto: ");
@@ -87,13 +107,13 @@ int main()
             inserir_gasto(dados, &num_gasto);
             break;
         case '2':
-    listar_ou_buscar_gastos(dados, num_gasto);
+            listar_ou_buscar_gastos(dados, num_gasto);
             break;
         case '3':
         
             break;
         case '4':
-        
+            remover_gasto(dados, &num_gasto);
             break;
         case '5':
         
