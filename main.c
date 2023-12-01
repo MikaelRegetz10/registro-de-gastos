@@ -90,9 +90,15 @@ void inserir_gasto(Gasto *dados, int *num_gastos) {
     printf("Gasto inserido com sucesso!\n");
 }
 
-void salvar_em_arquivo(Gasto *gastos, int numGastos, char *nomeArquivo) {
-    printf("Escolha o nome do arquivo onde o gasto sera guardado. ");
-    FILE *arquivo = fopen(nomeArquivo, "w");
+void salvar_em_arquivo(Gasto *gastos, int numGastos) {
+    char nomearquivo[15];
+    printf("Em qual arquivo o gasto sera guardado? ");
+                fflush(stdin);
+            fgets(nomearquivo,sizeof(nomearquivo),stdin);
+            nomearquivo[strcspn(nomearquivo, "\n")] = '\0';
+    char arquivoDest[50] = "gastos\\";
+    strcat(arquivoDest, nomearquivo);
+    FILE *arquivo = fopen(arquivoDest, "w");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo para escrita.\n");
         return;
@@ -127,7 +133,6 @@ int main()
     char choice;
     int num_gasto = 0;
     Gasto dados[100];
-    
     do
     {
         imprimir_interface();
@@ -151,7 +156,7 @@ int main()
         
             break;
         case '6':
-            salvar_em_arquivo(dados,num_gasto,"arquivo.txt");
+            salvar_em_arquivo(dados,num_gasto);
             break;
         case '0':
             printf("Saindo...\n");     
