@@ -13,7 +13,6 @@ typedef struct Gasto
 }Gasto;
 
 
-
 void listar_ou_buscar_gastos(Gasto *dados, int num_gastos) 
 {
     while (1)
@@ -47,7 +46,7 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
                     return;
                 }
             }
-            printf("Gasto com nome '%s' nao encontrado.\n", nomeBusca);
+            printf("Gasto com nome '%s' não encontrado.\n", nomeBusca);
             break;
         }
         else {
@@ -78,16 +77,33 @@ void remover_gasto(Gasto *dados, int *num_gastos)
     printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
 }
 
-void inserir_gasto(Gasto *dados, int *num_gastos) {
+void inserir_gasto(Gasto *dados, int *num_gastos) 
+{
     printf("Nome do gasto: ");
     scanf("%s", dados[*num_gastos].nome);
     printf("Valor do gasto: ");
     scanf("%f", &dados[*num_gastos].valor);
-    printf("Data do gasto (DD/MM/AAAA): ");
-    scanf("%s", dados[*num_gastos].data);
+    
+    // VALIDAÇÃO DE DIA
+    
+    int dia, mes, ano;
+    
+    while (1) {
+        printf("Digite a data no formato DD/MM/AAAA: ");
+        scanf("%s", dados[*num_gastos].data);
 
-    (*num_gastos)++;
-    printf("Gasto inserido com sucesso!\n");
+        if (sscanf(dados[*num_gastos].data, "%d/%d/%d", &dia, &mes, &ano) == 3) {
+            if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano >= 1000 && ano <= 9999) {
+                (*num_gastos)++;
+                printf("Gasto inserido com sucesso!\n");
+                break;  
+            } else {
+                printf("Data invalida. Certifique-se de digitar uma data valida.\n");
+            }
+        } else {
+            printf("Formato invalido. Certifique-se de seguir o formato DD/MM/AAAA.\n");
+        }
+    }
 }
 
 void salvar_em_arquivo(Gasto *gastos, int numGastos) {
@@ -110,6 +126,21 @@ void salvar_em_arquivo(Gasto *gastos, int numGastos) {
 
     fclose(arquivo);
     printf("Lista de gastos salva em arquivo.\n");
+}
+void calcular_soma_media(struct Gasto *gastos, int numGastos){
+    float soma = 0;
+
+    if (numGastos == 0){
+        printf("Nenhum gasto cadastrado.\n");
+        return;
+    }
+
+    for (int i = 0; i < numGastos; i++){
+        soma += gastos[i].valor;
+    }
+
+    printf("Soma dos gastos: R$%.2f\n", soma);
+    printf("Media dos gastos: R$%.2f\n", soma / numGastos);
 }
 
 void imprimir_interface()
@@ -153,7 +184,7 @@ int main()
             remover_gasto(dados, &num_gasto);
             break;
         case '5':
-        
+            calcular_soma_media(dados, num_gasto);
             break;
         case '6':
             salvar_em_arquivo(dados,num_gasto);
