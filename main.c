@@ -47,7 +47,7 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
                     return;
                 }
             }
-            printf("Gasto com nome '%s' não encontrado.\n", nomeBusca);
+            printf("Gasto com nome '%s' nao encontrado.\n", nomeBusca);
             break;
         }
         else {
