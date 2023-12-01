@@ -121,6 +121,21 @@ void salvar_em_arquivo(Gasto *gastos, int numGastos, char *nomeArquivo) {
     fclose(arquivo);
     printf("Lista de gastos salva em arquivo.\n");
 }
+void calcular_soma_media(struct Gasto *gastos, int numGastos){
+    float soma = 0;
+
+    if (numGastos == 0){
+        printf("Nenhum gasto cadastrado.\n");
+        return;
+    }
+
+    for (int i = 0; i < numGastos; i++){
+        soma += gastos[i].valor;
+    }
+
+    printf("Soma dos gastos: R$%.2f\n", soma);
+    printf("Media dos gastos: R$%.2f\n", soma / numGastos);
+}
 
 void imprimir_interface()
 {
@@ -164,7 +179,7 @@ int main()
             remover_gasto(dados, &num_gasto);
             break;
         case '5':
-        
+            calcular_soma_media(dados, num_gasto);
             break;
         case '6':
             salvar_em_arquivo(dados,num_gasto,"arquivo.txt");
