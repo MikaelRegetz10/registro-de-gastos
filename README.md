@@ -12,7 +12,7 @@
 ## 📃 Algumas informações
 Quando desejar salvar algum arquivo ele estará na pasta **gastos salvos**. Veja um exemplo logo abaixo:
 
-![image](https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/a3af36a9-086b-4a20-b062-e5962d784088)
+![image](https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/6f0629c3-e323-474c-92e0-620b7f104639)
 > Obs.: O nome do arquivo é de acordo com oque você escolheu
 
 ## 🤝 Colaboradores
