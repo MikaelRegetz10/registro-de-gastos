@@ -23,7 +23,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
   <tr>
     <td align="center">
       <a href="#" title="defina o titulo do link">
-        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/ac071905-aeb2-458a-96ba-68493f355092" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/ac071905-aeb2-458a-96ba-68493f355092" width="100px;" alt="Foto do Mikael Regetz no GitHub"/><br>
         <sub>
           <b>Mikael Regetz</b>
         </sub>
