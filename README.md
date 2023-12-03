@@ -10,7 +10,7 @@
 > * Salvar a lista de gastos em um arquivo.
 
 ## 📃 Algumas informações
-Quando desejar salvar algum arquivo ele estará na pasta **gastos salvos**. Veja um exemplo logo abaixo:
+Quando desejar salvar algum arquivo ele estará na pasta **gastos**. Veja um exemplo logo abaixo:
 
 ![image](https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/6f0629c3-e323-474c-92e0-620b7f104639)
 > Obs.: O nome do arquivo é de acordo com oque você escolheu
