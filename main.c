@@ -6,8 +6,7 @@
 //nome da variavel mudado de motivo para nome
 typedef struct Gasto
 {
-    //nome da variavel mudado para nome (cuidado quando chamar);
-    char nome[50];
+    char *nome;
     char data[11];
     float valor;
 }Gasto;
@@ -77,26 +76,39 @@ void remover_gasto(Gasto *dados, int *num_gastos)
     printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
 }
 
+
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 void inserir_gasto(Gasto *dados, int *num_gastos) 
 {
+    dados[*num_gastos].nome = (char *)malloc(100 * sizeof(char)); 
+
+    limpar_buffer();
+
     printf("Nome do gasto: ");
-    scanf("%s", dados[*num_gastos].nome);
+    fgets(dados[*num_gastos].nome, 100, stdin);
+    dados[*num_gastos].nome[strcspn(dados[*num_gastos].nome, "\n")] = '\0';
+
     printf("Valor do gasto: ");
     scanf("%f", &dados[*num_gastos].valor);
-    
+    limpar_buffer(); 
+
     // VALIDAÇÃO DE DIA
-    
     int dia, mes, ano;
-    
+
     while (1) {
         printf("Digite a data no formato DD/MM/AAAA: ");
-        scanf("%s", dados[*num_gastos].data);
+        fgets(dados[*num_gastos].data, sizeof(dados[*num_gastos].data), stdin);
+        dados[*num_gastos].data[strcspn(dados[*num_gastos].data, "\n")] = '\0'; 
 
         if (sscanf(dados[*num_gastos].data, "%d/%d/%d", &dia, &mes, &ano) == 3) {
             if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano >= 1000 && ano <= 9999) {
                 (*num_gastos)++;
                 printf("Gasto inserido com sucesso!\n");
-                break;  
+                break;
             } else {
                 printf("Data invalida. Certifique-se de digitar uma data valida.\n");
             }
@@ -106,15 +118,9 @@ void inserir_gasto(Gasto *dados, int *num_gastos)
     }
 }
 
-void salvar_em_arquivo(Gasto *gastos, int numGastos) {
-    char nomearquivo[15];
-    printf("Em qual arquivo o gasto sera guardado? ");
-                fflush(stdin);
-            fgets(nomearquivo,sizeof(nomearquivo),stdin);
-            nomearquivo[strcspn(nomearquivo, "\n")] = '\0';
-    char arquivoDest[50] = "gastos\\";
-    strcat(arquivoDest, nomearquivo);
-    FILE *arquivo = fopen(arquivoDest, "w");
+void salvar_em_arquivo(Gasto *gastos, int numGastos, char *nomeArquivo) {
+    printf("Escolha o nome do arquivo onde o gasto sera guardado. ");
+    FILE *arquivo = fopen(nomeArquivo, "w");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo para escrita.\n");
         return;
@@ -126,21 +132,6 @@ void salvar_em_arquivo(Gasto *gastos, int numGastos) {
 
     fclose(arquivo);
     printf("Lista de gastos salva em arquivo.\n");
-}
-void calcular_soma_media(struct Gasto *gastos, int numGastos){
-    float soma = 0;
-
-    if (numGastos == 0){
-        printf("Nenhum gasto cadastrado.\n");
-        return;
-    }
-
-    for (int i = 0; i < numGastos; i++){
-        soma += gastos[i].valor;
-    }
-
-    printf("Soma dos gastos: R$%.2f\n", soma);
-    printf("Media dos gastos: R$%.2f\n", soma / numGastos);
 }
 
 void imprimir_interface()
@@ -164,6 +155,7 @@ int main()
     char choice;
     int num_gasto = 0;
     Gasto dados[100];
+    
     do
     {
         imprimir_interface();
@@ -184,10 +176,10 @@ int main()
             remover_gasto(dados, &num_gasto);
             break;
         case '5':
-            calcular_soma_media(dados, num_gasto);
+        
             break;
         case '6':
-            salvar_em_arquivo(dados,num_gasto);
+            salvar_em_arquivo(dados,num_gasto,"arquivo.txt");
             break;
         case '0':
             printf("Saindo...\n");     
@@ -199,5 +191,10 @@ int main()
 
     } while ( choice != '0');
     
+    for (int i = 0; i < num_gasto; i++) {
+            free(dados[i].nome);
+        }
+
+
     return 0;
 }
