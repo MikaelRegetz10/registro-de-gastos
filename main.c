@@ -6,12 +6,10 @@
 //nome da variavel mudado de motivo para nome
 typedef struct Gasto
 {
-    //nome da variavel mudado para nome (cuidado quando chamar);
-    char nome[50];
+    char *nome;
     char data[11];
     float valor;
 }Gasto;
-
 
 
 void listar_ou_buscar_gastos(Gasto *dados, int num_gastos) 
@@ -78,16 +76,46 @@ void remover_gasto(Gasto *dados, int *num_gastos)
     printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
 }
 
-void inserir_gasto(Gasto *dados, int *num_gastos) {
+
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void inserir_gasto(Gasto *dados, int *num_gastos) 
+{
+    dados[*num_gastos].nome = (char *)malloc(100 * sizeof(char)); 
+
+    limpar_buffer();
+
     printf("Nome do gasto: ");
-    scanf("%s", dados[*num_gastos].nome);
+    fgets(dados[*num_gastos].nome, 100, stdin);
+    dados[*num_gastos].nome[strcspn(dados[*num_gastos].nome, "\n")] = '\0';
+
     printf("Valor do gasto: ");
     scanf("%f", &dados[*num_gastos].valor);
-    printf("Data do gasto (DD/MM/AAAA): ");
-    scanf("%s", dados[*num_gastos].data);
+    limpar_buffer(); 
 
-    (*num_gastos)++;
-    printf("Gasto inserido com sucesso!\n");
+    // VALIDAÇÃO DE DIA
+    int dia, mes, ano;
+
+    while (1) {
+        printf("Digite a data no formato DD/MM/AAAA: ");
+        fgets(dados[*num_gastos].data, sizeof(dados[*num_gastos].data), stdin);
+        dados[*num_gastos].data[strcspn(dados[*num_gastos].data, "\n")] = '\0'; 
+
+        if (sscanf(dados[*num_gastos].data, "%d/%d/%d", &dia, &mes, &ano) == 3) {
+            if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano >= 1000 && ano <= 9999) {
+                (*num_gastos)++;
+                printf("Gasto inserido com sucesso!\n");
+                break;
+            } else {
+                printf("Data invalida. Certifique-se de digitar uma data valida.\n");
+            }
+        } else {
+            printf("Formato invalido. Certifique-se de seguir o formato DD/MM/AAAA.\n");
+        }
+    }
 }
 
 void salvar_em_arquivo(Gasto *gastos, int numGastos, char *nomeArquivo) {
@@ -163,5 +191,10 @@ int main()
 
     } while ( choice != '0');
     
+    for (int i = 0; i < num_gasto; i++) {
+            free(dados[i].nome);
+        }
+
+
     return 0;
 }
