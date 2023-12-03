@@ -31,9 +31,9 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
     </td>
     <td align="center">
       <a href="#" title="defina o titulo do link">
-        <img src="https://s2.glbimg.com/FUcw2usZfSTL6yCCGj3L3v3SpJ8=/smart/e.glbimg.com/og/ed/f/original/2019/04/25/zuckerberg_podcast.jpg" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/7e381661-48cd-45a5-b729-94b120e57edc" width="100px;" alt="Foto do Gabriel Guedes"/><br>
         <sub>
-          <b>Mark Zuckerberg</b>
+          <b>Gabriel Guedes</b>
         </sub>
       </a>
     </td>
