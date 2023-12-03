@@ -54,6 +54,25 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
     }
 }
 
+void editar_gasto(struct Gasto *dados, int num_gastos) {
+    char nomeEdicao[50];
+    printf("Digite o nome do gasto a ser editado: ");
+    scanf("%s", nomeEdicao);
+
+    for (int i = 0; i < num_gastos; i++) {
+        if (strcmp(dados[i].nome, nomeEdicao) == 0) {
+            printf("Novo valor do gasto: ");
+            scanf("%f", &dados[i].valor);
+            printf("Nova data do gasto: ");
+            scanf("%s", dados[i].data);
+            printf("Gasto editado com sucesso!\n");
+            return;
+        }
+    }
+
+    printf("Gasto com nome '%s' não encontrado.\n", nomeEdicao);
+}
+
 void remover_gasto(Gasto *dados, int *num_gastos) 
 {
     char nomeRemocao[50];
