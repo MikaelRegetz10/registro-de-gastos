@@ -118,20 +118,39 @@ void inserir_gasto(Gasto *dados, int *num_gastos)
     }
 }
 
-void salvar_em_arquivo(Gasto *gastos, int numGastos, char *nomeArquivo) {
-    printf("Escolha o nome do arquivo onde o gasto sera guardado. ");
-    FILE *arquivo = fopen(nomeArquivo, "w");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return;
-    }
+void salvar_em_arquivo(Gasto *gastos, int numGastos) {
+    char nomearquivo[15];
+    printf("Em qual arquivo o gasto sera guardado? ");
+    fflush(stdin);
+    fgets(nomearquivo,sizeof(nomearquivo),stdin);
+    nomearquivo[strcspn(nomearquivo, "\n")] = '\0';
+    
+    char arquivoDest[50] = "gastos\\";
+    strcat(arquivoDest, nomearquivo);
+    FILE *arquivo = fopen(arquivoDest, "w");
 
     for (int i = 0; i < numGastos; i++) {
-        fprintf(arquivo, "%s %.2f %s\n", gastos[i].nome, gastos[i].valor, gastos[i].data);
+        fprintf(arquivo, "Nome: %s, Valor: R$ %.2f Data: %s\n", gastos[i].nome, gastos[i].valor, gastos[i].data);
     }
 
     fclose(arquivo);
     printf("Lista de gastos salva em arquivo.\n");
+}
+
+void calcular_soma_media(struct Gasto *gastos, int numGastos){
+    float soma = 0;
+
+    if (numGastos == 0){
+        printf("Nenhum gasto cadastrado.\n");
+        return;
+    }
+
+    for (int i = 0; i < numGastos; i++){
+        soma += gastos[i].valor;
+    }
+
+    printf("Soma dos gastos: R$%.2f\n", soma);
+    printf("Media dos gastos: R$%.2f\n", soma / numGastos);
 }
 
 void imprimir_interface()
@@ -176,10 +195,10 @@ int main()
             remover_gasto(dados, &num_gasto);
             break;
         case '5':
-        
+            calcular_soma_media(dados, num_gasto);
             break;
         case '6':
-            salvar_em_arquivo(dados,num_gasto,"arquivo.txt");
+            salvar_em_arquivo(dados, num_gasto);
             break;
         case '0':
             printf("Saindo...\n");     
