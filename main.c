@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//modifiquei o nome do struct e coloquei um apelido para interagir melhor com o codigo
-//nome da variavel mudado de motivo para nome
+
 typedef struct Gasto
 {
     char *nome;
@@ -11,6 +10,11 @@ typedef struct Gasto
     float valor;
 }Gasto;
 
+void limpar_buffer() 
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 
 void listar_ou_buscar_gastos(Gasto *dados, int num_gastos) 
 {
@@ -27,7 +31,6 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
                 printf("Nenhum gasto registrado.\n");
             } else {
                 for (int i = 0; i < num_gastos; i++) {
-                    //Formatar saída 
                     printf("%d. Nome: %s - Valor: R$ %.2f - Data: %s\n", i + 1, dados[i].nome, dados[i].valor, dados[i].data);
                 }
             }
@@ -40,7 +43,6 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
             
             for (int i = 0; i < num_gastos; i++) {
                 if (strcmp(dados[i].nome, nomeBusca) == 0) {
-                //Formatar saída 
                     printf("Nome: %s - Valor: R$ %.2f - Data: %s\n", dados[i].nome, dados[i].valor, dados[i].data);
                     return;
                 }
@@ -52,6 +54,26 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
             printf("Opcao nao identificada.\n");
         }
     }
+}
+
+void editar_gasto(struct Gasto *dados, int num_gastos) 
+{
+    char nomeEdicao[50];
+    printf("Digite o nome do gasto a ser editado: ");
+    scanf("%s", nomeEdicao);
+
+    for (int i = 0; i < num_gastos; i++) {
+        if (strcmp(dados[i].nome, nomeEdicao) == 0) {
+            printf("Novo valor do gasto: ");
+            scanf("%f", &dados[i].valor);
+            printf("Nova data do gasto: ");
+            scanf("%s", dados[i].data);
+            printf("Gasto editado com sucesso!\n");
+            return;
+        }
+    }
+
+    printf("Gasto com nome '%s' nao encontrado.\n", nomeEdicao);
 }
 
 void remover_gasto(Gasto *dados, int *num_gastos) 
@@ -73,14 +95,9 @@ void remover_gasto(Gasto *dados, int *num_gastos)
         }
     }
 
-    printf("Gasto com nome '%s' não encontrado.\n", nomeRemocao);
+    printf("Gasto com nome '%s' nao encontrado.\n", nomeRemocao);
 }
 
-
-void limpar_buffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
 
 void inserir_gasto(Gasto *dados, int *num_gastos) 
 {
@@ -118,7 +135,8 @@ void inserir_gasto(Gasto *dados, int *num_gastos)
     }
 }
 
-void salvar_em_arquivo(Gasto *gastos, int numGastos) {
+void salvar_em_arquivo(Gasto *gastos, int numGastos) 
+{
     char nomearquivo[15];
     printf("Em qual arquivo o gasto sera guardado? ");
     fflush(stdin);
@@ -137,7 +155,8 @@ void salvar_em_arquivo(Gasto *gastos, int numGastos) {
     printf("Lista de gastos salva em arquivo.\n");
 }
 
-void calcular_soma_media(struct Gasto *gastos, int numGastos){
+void calcular_soma_media(struct Gasto *gastos, int numGastos)
+{
     float soma = 0;
 
     if (numGastos == 0){
@@ -189,7 +208,7 @@ int main()
             listar_ou_buscar_gastos(dados, num_gasto);
             break;
         case '3':
-        
+            editar_gasto(dados, num_gasto);
             break;
         case '4':
             remover_gasto(dados, &num_gasto);
