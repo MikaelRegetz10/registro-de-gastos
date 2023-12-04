@@ -39,9 +39,33 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
     </td>
     <td align="center">
       <a href="#" title="defina o titulo do link">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/2dca0d0d-62cf-4564-9cf8-f6f9fa15e410" width="100px;" alt="Foto do Kaion Maranhão"/><br>
         <sub>
-          <b>Steve Jobs</b>
+          <b>Kaion</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="defina o titulo do link">
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/2dca0d0d-62cf-4564-9cf8-f6f9fa15e410" width="100px;" alt="Foto do Kaion Maranhão"/><br>
+        <sub>
+          <b>Kaion</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="defina o titulo do link">
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/2dca0d0d-62cf-4564-9cf8-f6f9fa15e410" width="100px;" alt="Foto do Kaion Maranhão"/><br>
+        <sub>
+          <b>Kaion</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="defina o titulo do link">
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/2dca0d0d-62cf-4564-9cf8-f6f9fa15e410" width="100px;" alt="Foto do Kaion Maranhão"/><br>
+        <sub>
+          <b>Kaion</b>
         </sub>
       </a>
     </td>
