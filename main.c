@@ -47,7 +47,7 @@ void listar_ou_buscar_gastos(Gasto *dados, int num_gastos)
                     return;
                 }
             }
-            printf("Gasto com nome '%s' não encontrado.\n", nomeBusca);
+            printf("Gasto com nome '%s' nao encontrado.\n", nomeBusca);
             break;
         }
         else {
@@ -177,8 +177,8 @@ void imprimir_interface()
     printf("=====================================\n");
     printf("|         Registro de gastos        |\n");
     printf("!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!\n");
-    printf("| 1- Adcionar gastos                |\n");
-    printf("| 2- Buscas gastos/ listar          |\n");
+    printf("| 1- Adicionar gastos               |\n");
+    printf("| 2- Buscas / listar gastos         |\n");
     printf("| 3- Editar gasto                   |\n");
     printf("| 4- Remover gasto                  |\n");
     printf("| 5- Mostrar soma/ media dos gastos |\n");
