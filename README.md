@@ -63,9 +63,9 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
     </td>
     <td align="center">
       <a href="#" title="defina o titulo do link">
-        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/2dca0d0d-62cf-4564-9cf8-f6f9fa15e410" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;" alt="Foto do Kaion Maranhão"/><br>
+        <img src="https://github.com/MikaelRegetz10/registro-de-gastos/assets/127456294/5ececc90-88b5-40ef-95b2-ae8c6016cd5c" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;" alt="Foto do Kaion Maranhão"/><br>
         <sub>
-          <b>Kaion</b>
+          <b>João Neirelli</b>
         </sub>
       </a>
     </td>
