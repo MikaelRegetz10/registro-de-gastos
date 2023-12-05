@@ -9,6 +9,31 @@
 > * Mostrar soma e média dos gastos;
 > * Salvar a lista de gastos em um arquivo.
 
+## ⚙ Pré-requisitos
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+* Você deve ter uma máquina `<Windows>`. Não fizemos o teste em máquinas `<Linux / Mac>` 
+* Deve instalar sem sua máquina `gcc (MinGW.org GCC-6.3.0-1) 6.3.0`
+* Você deve instalar a versão mais atualizada da IDE `Visual Studio Code`
+  > Se houver alguma duvida sobre a instalação [clique aqui](https://www.youtube.com/watch?v=WHyxv69ZAf0)
+  
+* No Visual studio code você deve ir em extensões e instalar as seguintes:
+  * C/C++ `v1.18.5`
+  * C/C++ Extension Pack `v1.3.0`
+  * C/C++ Compile Run `v1.0.50`
+
+## 💻 Como executar
+Execute no terminal:
+
+```
+$ git clone https://github.com/MikaelRegetz10/registro-de-gastos.git
+```
+E com todas as extensões instaladas no Visual Studio Code no botão como este abaixo
+
+![image](https://github.com/iuricode/readme-template/assets/127456294/8dd5b148-071d-40f7-be4e-914f69d4cb7d)
+
+Ele se locaiza no canto superior direito do vscode
+
+  
 ## 📃 Algumas informações
 Quando desejar salvar algum arquivo ele estará na pasta **gastos**. Veja um exemplo logo abaixo:
 
