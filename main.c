@@ -178,7 +178,7 @@ void imprimir_interface()
     printf("|         Registro de gastos        |\n");
     printf("!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!\n");
     printf("| 1- Adicionar gastos               |\n");
-    printf("| 2- Buscas / listar gastos         |\n");
+    printf("| 2- Buscar / listar gastos         |\n");
     printf("| 3- Editar gasto                   |\n");
     printf("| 4- Remover gasto                  |\n");
     printf("| 5- Mostrar soma/ media dos gastos |\n");
